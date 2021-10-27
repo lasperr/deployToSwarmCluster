@@ -1,0 +1,2 @@
+./inventory/swarm_cluster
+./group_vars/vault.yml

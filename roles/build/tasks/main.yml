@@ -1,0 +1,22 @@
+---
+- name: Git monorepository clone
+  ansible.builtin.git:
+    repo: "https://github.com/AlariCode/docker-demo.git"
+    dest: "{{ git_folder }}"
+    version: block-7
+
+- name: Building image
+  community.docker.docker_image:
+    name: "{{ registry_name }}/{{ item.name }}"
+    tag: "{{ item.version }}"
+    push: yes
+    build:
+      path: "{{ git_folder }}"
+      dockerfile: "{{ git_folder }}/apps/{{ item.name }}/Dockerfile"
+    source: build
+  loop: "{{ services | difference(non_build_services) }}"
+
+- name: Deleting repo
+  file:
+    state: absent
+    path: "{{ git_folder }}"

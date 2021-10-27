@@ -1,0 +1,23 @@
+---
+- name: Deploy server
+  hosts: deploy
+  roles:
+    - role: preconfig
+      tags: preconfig
+    - role: build
+      tags: build  
+    - role: deploy
+      tags: deploy
+
+
+- name: Manager server
+  hosts: managers
+  roles:
+    - role: preconfig
+      tags: preconfig
+
+- name: Worker server
+  hosts: workers
+  roles:
+    - role: preconfig 
+      tags: preconfig
