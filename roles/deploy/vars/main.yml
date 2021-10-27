@@ -1,0 +1,5 @@
+---
+networkName: app_network
+rmq:
+  user: admin
+  password: admin

@@ -1,0 +1,22 @@
+---
+- name: "Configuration secret for [{{ name }}]"
+  include: "../secret.yml"
+
+- name: "Deploying Service [{{ name }}]"
+  block:
+    - name: "Deploy service [{{ name }}]"
+      community.docker.docker_swarm_service:
+        name: "{{ name }}"
+        image: "{{ registry_name }}/{{ name }}:{{ version }}"
+        state: present
+        networks:
+          - name: "{{ networkName }}"
+        publish:
+          - mode: ingress
+            protocol: tcp
+            published_port: 3002
+            target_port: 3000
+        secrets:
+          - secret_name: "{{ name }}.env"
+            filename: "/opt/app/.env"
+  tags: "{{ name }}"

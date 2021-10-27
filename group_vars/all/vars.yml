@@ -3,9 +3,9 @@ rmqDefaults:
   - name: AMQP_EXCHANGE
     value: xchg_integrations
   - name: AMQP_USER
-    value: "{{rmq.user}}"
+    value: "{{ rmq.user }}"
   - name: AMQP_PASSWORD
-    value: "{{rmq.password}}"
+    value: "{{ rmq.password }}"
   - name: AMQP_HOSTNAME
     value: rmq
   
@@ -15,13 +15,17 @@ registry_name: "localhost:5000"
 services:
   - name: api
     version: latest
-  # - name: app
-  #   version: latest
-  # - name: converter
-  #   version: latest
+  - name: app
+    version: latest
+  - name: converter
+    version: latest
   - name: rmq
     version: latest
 
 non_build_services:
   - name: rmq
     version: latest
+
+configs:
+  converter:
+    queue: q_imageProcessor

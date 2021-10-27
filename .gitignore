@@ -1,2 +1,2 @@
-./inventory/swarm_cluster
-./group_vars/vault.yml
+inventory/*
+group_vars/vau*.yml
