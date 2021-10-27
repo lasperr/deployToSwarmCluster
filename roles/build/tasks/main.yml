@@ -9,7 +9,7 @@
   community.docker.docker_image:
     name: "{{ registry_name }}/{{ item.name }}"
     tag: "{{ item.version }}"
-    push: yes
+    push: true
     build:
       path: "{{ git_folder }}"
       dockerfile: "{{ git_folder }}/apps/{{ item.name }}/Dockerfile"

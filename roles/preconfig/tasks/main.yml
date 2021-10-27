@@ -16,6 +16,7 @@
           - python3-pip
         state: present
         cache_valid_time: 86400
+
     - name: Append docker keys
       apt_key:
         url: "https://download.docker.com/linux/ubuntu/gpg"
@@ -27,19 +28,20 @@
           deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg]
           https://download.docker.com/linux/ubuntu
           {{ ansible_distribution_release }} stable
-        update_cache: yes
+        update_cache: true
         filename: Docker
     - name: Installing docker-ce
       apt:
         name: docker-ce
         state: present
-        update_cache: yes
+        update_cache: true
     - name: Restart docker
       service:
         name: docker
         state: restarted
-        enabled: yes
-  become: yes
+        enabled: true
+  become: true
+
 - name: Installing docker-compose
   block:
     - name: Receving docker-composes last version
@@ -52,7 +54,7 @@
         url: "https://github.com/docker/compose/releases/download/{{ page.json.tag_name }}/docker-compose-Linux-x86_64"
         dest: /usr/local/bin/docker-compose
         mode: 0755
-  become: yes
+  become: true
 
 - name: Installing additional packages for Python
   block:
@@ -66,7 +68,7 @@
       user:
         name: "{{ ansible_user }}"
         group: docker
-        append: yes
+        append: true
     - name: Reboot server machine
       reboot:
-  become: yes
+  become: true
