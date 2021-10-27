@@ -16,7 +16,6 @@
           - python3-pip
         state: present
         cache_valid_time: 86400
-
     - name: Append docker keys
       apt_key:
         url: "https://download.docker.com/linux/ubuntu/gpg"
@@ -56,14 +55,11 @@
         mode: 0755
   become: true
 
-- name: Installing additional packages for Python
+- name: Installing additional packages for Python and Finishing Installation
   block:
     - name: Installing pip
       pip:
         name: docker
-
-- name: Finishing installation
-  block:
     - name: Ading user to group docker
       user:
         name: "{{ ansible_user }}"
