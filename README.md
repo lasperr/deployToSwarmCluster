@@ -1,3 +1,3 @@
 # deployToSwarmCluster
 # ComingSoon
-![alt text](waiting.jpg)​
+![alt text](wait.jpg)​
