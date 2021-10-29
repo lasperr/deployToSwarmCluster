@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   role_name: deploy
-  description: configure servers for docker
+  description: Deploy services to Swarm Cluster
   author: Dias Erbolov
   license: EPAM
   min_ansible_version: 2.9

@@ -60,7 +60,7 @@
     - name: Installing pip
       pip:
         name: docker
-    - name: Ading user to group docker
+    - name: Adding user to group docker
       user:
         name: "{{ ansible_user }}"
         group: docker
