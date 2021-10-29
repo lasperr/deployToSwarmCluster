@@ -5,23 +5,8 @@
     advertise_addr: "{{ swarm_addr }}"
   register: token
 
-- name: Directory create
-  file:
-    path: ./tokens
-    state: directory
-    mode: '0644'
-  delegate_to: localhost
-
-- name: Managers token saving
-  copy:
-    dest: ./tokens/token-manager
-    content: "{{ token.swarm_facts.JoinTokens.Manager }}"
-    mode: '0644'
-  delegate_to: localhost
-
-- name: Workers token saving
-  copy:
-    dest: ./tokens/token-worker
-    content: "{{ token.swarm_facts.JoinTokens.Worker }}"
-    mode: '0644'
-  delegate_to: localhost
+- name: Tokens saving
+  set_fact:
+    token_manager: "{{ token.swarm_facts.JoinTokens.Manager }}"
+    token_worker: "{{ token.swarm_facts.JoinTokens.Worker }}"
+    cacheable: true

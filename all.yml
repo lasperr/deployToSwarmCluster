@@ -28,11 +28,3 @@
     - role: joinSwarm
       type: worker
       tags: joinSwarm
-  post_tasks:
-    - name: Clean tokens directory
-      file:
-        path: ./tokens
-        state: absent
-      ignore_errors: true
-      delegate_to: localhost
-      tags: joinSwarm
