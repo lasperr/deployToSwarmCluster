@@ -24,6 +24,8 @@ services:
   - name: nginx
     version: latest
 
+swarm_addr: 10.11.10.1
+
 non_build_services:
   - name: rmq
     version: 3-management
