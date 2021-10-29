@@ -1,0 +1,8 @@
+---
+- name: Swarm initialization
+  var:
+    toker: "{{ lookup('file', '../../tokens/token-{{ type }}') }}"
+  community.docker.docker_swarm:
+    state: join
+    remote_addrs: "{{ swarm_addr }}"
+    join_token: "{{ token }}"
