@@ -2,3 +2,4 @@ inventory/*
 group_vars/vau*.yml
 tokens/
 forJenkins.yml
+forK8S.yml
